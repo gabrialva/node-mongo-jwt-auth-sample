@@ -14,7 +14,7 @@ function verifyToken(req, res, next) {
         bearerToken,
         process.env.JWT_ACCESS_SECRET
       );
-      req.user = decodedToken.id;
+      req.userId = decodedToken.id;
       next();
     } catch (err) {
       res.status(400).send(err);

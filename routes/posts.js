@@ -5,7 +5,7 @@ const verifyToken = require("../middlewares/verifyToken");
 router.get("/", verifyToken, (req, res) => {
   res
     .status(418)
-    .send(`protected posts route -> logged in with user id ${req.user}`);
+    .send(`protected posts route -> logged in with user id ${req.userId}`);
 });
 
 module.exports = router;
