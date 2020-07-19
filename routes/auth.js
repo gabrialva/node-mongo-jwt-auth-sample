@@ -4,20 +4,20 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv/config");
 
-//Create user
-router.post("/register", async (req, res) => {
-  //Check if user already exists
+//register user
+router.post("user/register", async (req, res) => {
+  //check if user already exists
   const userExists = await User.findOne({ email: req.body.email });
 
   if (userExists) {
     return res.status(400).json({ message: "User already exists" });
   }
 
-  //Hash password
+  //hash password
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-  //Create new user
+  //create new user
   const user = new User({
     username: req.body.username,
     email: req.body.email,
@@ -36,8 +36,14 @@ router.post("/register", async (req, res) => {
   }
 });
 
+//delete user
+router.delete("user/delete", (req, res) => {});
+
+//update user data
+router.patch("user/update", (req, res) => {});
+
 //generate tokens
-router.post("/token", async (req, res) => {
+router.post("/token/obtain", async (req, res) => {
   //check if user exists
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
@@ -80,6 +86,13 @@ router.post("/token", async (req, res) => {
   });
 });
 
+//remove refresh token cookie
+router.post("/token/remove", (req, res) => {
+  res.clearCookie("RefreshToken");
+  res.json({ message: "Successful removed refresh token cookie" });
+});
+
+//refresh access token
 router.post("/token/refresh", async (req, res) => {
   const refreshToken = req.cookies.RefreshToken;
 
