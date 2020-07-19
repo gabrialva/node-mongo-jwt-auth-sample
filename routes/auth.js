@@ -57,7 +57,7 @@ router.post("/token", async (req, res) => {
     { ...payload, tokenType: "access" },
     process.env.JWT_ACCESS_SECRET,
     {
-      expiresIn: process.env.TOKEN_LIFE,
+      expiresIn: process.env.JWT_ACCESS_LIFE,
     }
   );
 
@@ -65,7 +65,7 @@ router.post("/token", async (req, res) => {
     { ...payload, tokenType: "refresh" },
     process.env.JWT_REFRESH_SECRET,
     {
-      expiresIn: process.env.REFRESH_TOKEN_LIFE,
+      expiresIn: process.env.JWT_REFRESH_LIFE,
     }
   );
 
@@ -98,7 +98,7 @@ router.post("/token/refresh", async (req, res) => {
       { ...payload, tokenType: "access" },
       process.env.JWT_ACCESS_SECRET,
       {
-        expiresIn: process.env.TOKEN_LIFE,
+        expiresIn: process.env.JWT_ACCESS_LIFE,
       }
     );
     res.json({ Token: token });
