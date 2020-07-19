@@ -2,10 +2,11 @@ const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const verifyToken = require("../middlewares/verifyToken");
 require("dotenv/config");
 
 //register user
-router.post("user/register", async (req, res) => {
+router.post("/user/register", async (req, res) => {
   //check if user already exists
   const userExists = await User.findOne({ email: req.body.email });
 
@@ -37,10 +38,15 @@ router.post("user/register", async (req, res) => {
 });
 
 //delete user
-router.delete("user/delete", (req, res) => {});
+router.delete("/user/delete", verifyToken, async (req, res) => {
+  const deletedUser = await User.deleteOne({ _id: req.userId });
+  res.json({ message: "User deleted" });
+});
 
 //update user data
-router.patch("user/update", (req, res) => {});
+router.patch("/user/update", verifyToken, (req, res) => {
+  res.send("updated");
+});
 
 //generate tokens
 router.post("/token/obtain", async (req, res) => {
