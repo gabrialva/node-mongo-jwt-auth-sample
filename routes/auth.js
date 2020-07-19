@@ -5,6 +5,12 @@ const jwt = require("jsonwebtoken");
 const verifyToken = require("../middlewares/verifyToken");
 require("dotenv/config");
 
+//get user data
+router.get("/user", verifyToken, async (req, res) => {
+  const user = await User.findOne({ _id: req.userId });
+  res.json({ username: user.username, email: user.email });
+});
+
 //register user
 router.post("/user/register", async (req, res) => {
   //check if user already exists
