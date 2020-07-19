@@ -1,5 +1,7 @@
 # node-mongo-jwt-auth
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/cecfafc8595040109b5fcbc0494471db)](https://www.codacy.com/manual/GHOSCHT/node-mongo-jwt-auth?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=GHOSCHT/node-mongo-jwt-auth&amp;utm_campaign=Badge_Grade)
+
 A boilerplate login system in Node.js for my React applications
 
 ## Getting Started
