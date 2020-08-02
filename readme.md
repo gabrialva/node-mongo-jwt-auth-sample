@@ -24,7 +24,7 @@ yarn
 
 -   **PORT**
 -   **DB_CONNECT** (mongodb uri)
--   **JWT_ACCESS_SECRET**, **JWT_REFRESH_SECRET**, **JWT_ACCESS_LIFE**, **JWT_REFRESH_LIFE** (lifetime in '1min' / '1h')
+-   **JWT_ACCESS_SECRET**, **JWT_REFRESH_SECRET**, **JWT_ACCESS_LIFE**, **JWT_REFRESH_LIFE** (lifetime format: eg. '1min' or '1h')
 
 ## Development server
 
